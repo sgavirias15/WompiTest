@@ -17,7 +17,7 @@ Para correr los casos de automatizacion, asegurarse de tener los siguientes prer
 1. Clonar el repositorio con la siguiente url:
 
    ```shell
-   git clone 
+   git clone https://github.com/sgavirias15/WompiTest.git
    ```
 
 
