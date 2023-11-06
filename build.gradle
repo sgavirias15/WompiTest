@@ -1,0 +1,58 @@
+group 'co.com.wompi.certificacion'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'net.serenity-bdd.aggregator'
+
+repositories {
+    maven {
+        url "https://artifactory.apps.bancolombia.com/maven-bancolombia/"
+    }
+}
+
+buildscript {
+    repositories {
+        maven {
+            url "https://artifactory.apps.bancolombia.com/maven-bancolombia/"
+        }
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.89")
+    }
+}
+
+ext{
+    serenityVersion = '2.0.89'
+    serenityCucumberVersion = '1.9.48'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+tasks.withType(Test) {
+    systemProperty "file.encoding", "UTF-8"
+}
+
+test {
+    maxParallelForks=Runtime.runtime.availableProcessors()
+}
+
+dependencies {
+    testImplementation "net.serenity-bdd:serenity-core:$rootProject.ext.serenityVersion"
+    testImplementation "net.serenity-bdd:serenity-junit:$rootProject.ext.serenityVersion"
+    testImplementation "junit:junit:4.12"
+    testImplementation "org.slf4j:slf4j-api:1.7.25"
+    testImplementation "org.slf4j:slf4j-jdk14:1.7.25"
+    testImplementation "org.apache.logging.log4j:log4j-core:2.17.1"
+    implementation "net.serenity-bdd:serenity-cucumber:$rootProject.ext.serenityCucumberVersion"
+    implementation("io.github.bonigarcia:webdrivermanager:5.5.2")
+    implementation "net.serenity-bdd:serenity-screenplay:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay-webdriver:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-ensure:$rootProject.ext.serenityVersion"
+}
+
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+
+gradle.startParameter.continueOnFailure = true
