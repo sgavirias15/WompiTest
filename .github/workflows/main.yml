@@ -15,8 +15,7 @@ jobs:
 
       - name: Ejecutar pruebas
         run: |
-          ./gradlew clean test
-        working-directory: ./Wompi_Test
+          ./gradlew clean test        
 
       - name: Publicar resultados de pruebas
         uses: actions/upload-artifact@v2
