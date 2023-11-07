@@ -6,23 +6,19 @@ apply plugin: 'idea'
 apply plugin: 'net.serenity-bdd.aggregator'
 
 repositories {
-    maven {
-        url "https://artifactory.apps.bancolombia.com/maven-bancolombia/"
-    }
+    mavenCentral()  // Cambio a mavenCentral para usar el repositorio Maven central
 }
 
 buildscript {
     repositories {
-        maven {
-            url "https://artifactory.apps.bancolombia.com/maven-bancolombia/"
-        }
+        mavenCentral()  // Cambio a mavenCentral para usar el repositorio Maven central
     }
     dependencies {
         classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.89")
     }
 }
 
-ext{
+ext {
     serenityVersion = '2.0.89'
     serenityCucumberVersion = '1.9.48'
 }
@@ -30,12 +26,13 @@ ext{
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
+
 tasks.withType(Test) {
     systemProperty "file.encoding", "UTF-8"
 }
 
 test {
-    maxParallelForks=Runtime.runtime.availableProcessors()
+    maxParallelForks = Runtime.runtime.availableProcessors()
 }
 
 dependencies {
