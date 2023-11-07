@@ -12,6 +12,7 @@ Para correr los casos de automatizacion, asegurarse de tener los siguientes prer
 - Cucumber
 - Gherkin
 
+
 ## Para iniciar se necesita
 
 1. Clonar el repositorio con la siguiente url:
